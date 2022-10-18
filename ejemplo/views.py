@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from ejemplo.models import Familiar #renderiza 
 
 def index(request):
     return render(request, "ejemplo/saludar.html",{'nombre':'Leandro',
@@ -14,3 +15,7 @@ def index_tres(request):
 def imc(request,peso,altura):
     imc = (peso/(altura*altura))
     return render(request,"ejemplo/imc.html",{'imc': imc})
+
+def monstrar_familiares(request):
+  lista_familiares = Familiar.objects.all() #le dice al modelo que todas las ocurrencias de un familiar en la BD las traiga en una lista
+  return render(request, "ejemplo/familiares.html", {"lista_familiares": lista_familiares})
